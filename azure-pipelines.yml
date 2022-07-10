@@ -11,13 +11,13 @@ variables:
   azureServiceConnectionId: '9bbabb4a-c97a-49d3-b40a-70b1e92f1e66'
 
   # Web app name
-  webAppName: 'HueNT15FlaskApp'
+  webAppName: 'huent15-udacity-project2'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
   # Environment name
-  environmentName: 'HueNT15FlaskApp'
+  environmentName: 'huent15-udacity-project2'
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
@@ -80,7 +80,7 @@ stages:
             displayName: 'Use Python version'
 
           - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : HueNT15FlaskApp'
+            displayName: 'Deploy Azure Web App : huent15-udacity-project2'
             inputs:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
