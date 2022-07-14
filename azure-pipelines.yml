@@ -30,7 +30,7 @@ stages:
   displayName: Build stage
   jobs:
   - job: BuildJob
-    pool: huent15-agent
+    pool: CICDagentpool
      # vmImage: $(vmImageName)
     steps:
     - task: UsePythonVersion@0
