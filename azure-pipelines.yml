@@ -66,8 +66,7 @@ stages:
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
-    pool:
-      vmImage: $(vmImageName)
+    pool: CICDagentpool
     environment: $(environmentName)
     strategy:
       runOnce:
