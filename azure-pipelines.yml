@@ -11,13 +11,13 @@ variables:
   azureServiceConnectionId: 'f15fcbbf-5112-4b55-8bdc-38e87f57e595'
 
   # Web app name
-  webAppName: 'huent15-flask-ml-service'
+  webAppName: 'huent15-flask-app'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
   # Environment name
-  environmentName: 'huent15-flask-ml-service'
+  environmentName: 'huent15-flask-app'
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
@@ -80,7 +80,7 @@ stages:
             displayName: 'Use Python version'
 
           - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : huent15-flask-ml-service'
+            displayName: 'Deploy Azure Web App : huent15-flask-app'
             inputs:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
