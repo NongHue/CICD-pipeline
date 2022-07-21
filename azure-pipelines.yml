@@ -8,13 +8,10 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureServiceConnectionId: '6d6e8ff4-14e6-4833-89f9-1faf559382a4'
+  azureServiceConnectionId: 'd869ea38-c67d-404f-ac55-c9535496d919'
 
   # Web app name
   webAppName: 'huent15-flask-app'
-
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
 
   # Environment name
   environmentName: 'huent15-flask-app'
@@ -30,8 +27,8 @@ stages:
   displayName: Build stage
   jobs:
   - job: BuildJob
-    pool: CICDagentpool
-     # vmImage: $(vmImageName)
+    pool: udacityProject2
+     
     steps:
     - task: UsePythonVersion@0
       inputs:
@@ -66,7 +63,7 @@ stages:
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
-    pool: CICDagentpool
+    pool: udacityProject2
     environment: $(environmentName)
     strategy:
       runOnce:
