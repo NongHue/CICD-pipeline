@@ -3,7 +3,8 @@ from flask.logging import create_logger
 import logging
 
 import pandas as pd
-from sklearn.externals import joblib
+# from sklearn.externals import joblib
+import joblib
 from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
@@ -47,7 +48,6 @@ def predict():
     "LSTAT":{
        "0":4.98
     }
-    
     result looks like:
     { "prediction": [ 20.35373177134412 ] }
     """
