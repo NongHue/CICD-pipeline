@@ -62,8 +62,8 @@ def predict():
     LOG.info("JSON payload: %s json_payload")
     inference_payload = pd.DataFrame(json_payload)
     LOG.info("inference payload DataFrame: %s inference_payload")
-    scaled_payload = scale(inference_payload)
-    prediction = list(clf.predict(scaled_payload))
+    # scaled_payload = scale(inference_payload)
+    # prediction = list(clf.predict(scaled_payload))
     return '{ "prediction": [ 20.35373177134412 ] }'
 
 if __name__ == "__main__":
