@@ -22,61 +22,60 @@ variables:
   # Python version: 3.7
   pythonVersion: "3.8"
 stages:
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: BuildJob
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(pythonVersion)'
-      displayName: 'Use Python $(pythonVersion)'
+  - stage: Build
+    displayName: Build stage
+    jobs:
+      - job: BuildJob
+        pool: "huent15"
 
-    - script: |
-        python -m venv antenv
-        source antenv/bin/activate
-        python -m pip install --upgrade pip
-        pip install setup
-        pip install -r requirements.txt
-      workingDirectory: $(projectRoot)
-      displayName: "Install requirements"
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
-      inputs:
-        rootFolderOrFile: '$(projectRoot)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
-
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      displayName: 'Upload package'
-      artifact: drop
-
-- stage: Deploy
-  displayName: 'Deploy Web App'
-  dependsOn: Build
-  condition: succeeded()
-  jobs:
-  - deployment: DeploymentJob
-    pool:
-      vmImage: $(vmImageName)
-    environment: $(environmentName)
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-
+        steps:
           - task: UsePythonVersion@0
             inputs:
-              versionSpec: '$(pythonVersion)'
-            displayName: 'Use Python version'
+              versionSpec: "$(pythonVersion)"
+            displayName: "Use Python $(pythonVersion)"
 
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : huent15-flask-app'
+          - script: |
+              python -m venv antenv
+              source antenv/bin/activate
+              python -m pip install --upgrade pip
+              pip install setup
+              pip install -r requirements.txt
+            workingDirectory: $(projectRoot)
+            displayName: "Install requirements"
+
+          - task: ArchiveFiles@2
+            displayName: "Archive files"
             inputs:
-              azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppName)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+              rootFolderOrFile: "$(projectRoot)"
+              includeRootFolder: false
+              archiveType: zip
+              archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+              replaceExistingArchive: true
+
+          - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+            displayName: "Upload package"
+            artifact: drop
+
+  - stage: Deploy
+    displayName: "Deploy Web App"
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: DeploymentJob
+        pool: huent15
+        environment: $(environmentName)
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: UsePythonVersion@0
+                  inputs:
+                    versionSpec: "$(pythonVersion)"
+                  displayName: "Use Python version"
+
+                - task: AzureWebApp@1
+                  displayName: "Deploy Azure Web App : huent15-flask-app"
+                  inputs:
+                    azureSubscription: $(azureServiceConnectionId)
+                    appName: $(webAppName)
+                    package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
