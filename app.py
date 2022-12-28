@@ -64,7 +64,7 @@ def predict():
     #scaled_payload = scale(inference_payload)
     #prediction = list(clf.predict(scaled_payload))
     #return jsonify({'prediction': prediction})
-    return '{ "prediction": [ 20.35373177134412 ] }'
+    return '{ "prediction": [ 20.35373177134412 ] } \t'
 
 
 if __name__ == "__main__":
