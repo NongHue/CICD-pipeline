@@ -25,5 +25,5 @@ curl -d '{
    }
 }'\
      -H "Content-Type: application/json" \
-     -X POST https://huent15-udacity-project2.azurewebsites.net:$PORT/predict 
+     -X POST https://huent15-flask-app.azurewebsites.net:$PORT/predict 
      #your application name <yourappname>goes here
