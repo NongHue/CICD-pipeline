@@ -75,6 +75,7 @@ In this project, We will build a Github repository from scratch and create a sca
 - Clone the project (In this project we used Azure Cloud Shell)
 
  ![Screenshot of Clone the project](images/local-source-code.png)
+
  ![Screenshot of Clone the project](images/code-local2.png)
 
 - Create a Python Virtual Environment to run your application
@@ -102,7 +103,7 @@ In this project, We will build a Github repository from scratch and create a sca
     ```bash
     ./make_prediction.sh
     ```
-    ![Screenshot Prediction Local Test](images/run-predicct-local.png)
+    ![Screenshot Prediction Local Test](images/run-predict-local.png)
 
 - ```CTRL-C``` to stop the Flask application
 
@@ -144,7 +145,7 @@ Azure App service offers multiple ways to create a new application. In this sect
     ```
     ![Screenshot of Make all command](images/make-all.png)
     
-- Deploy application into the our resource group
+- Deploy application into the azure web app
 
     ```bash
     az webapp up -n huent15-flask-app -g ODL-clouddevops-220570
@@ -164,6 +165,7 @@ Azure App service offers multiple ways to create a new application. In this sect
 **Test Application:**
 
 - Edit the ```make_predict_azure_app.sh``` with the correct host name of the application to match the deployed prediction
+
 ![Screenshot of Edit Host Name](images/edit-hostname.png)
 
 - Run the script to test the app
