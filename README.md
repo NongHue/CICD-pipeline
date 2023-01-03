@@ -312,4 +312,4 @@ To avoid incurring charges on the Azure resources created in this project, delet
 
 ## Demo
 
-[CI/CD Demo Link]()
+[CI/CD Demo Link](https://youtu.be/BnF7cqt_UjM)
