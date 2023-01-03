@@ -185,7 +185,7 @@ Azure App service offers multiple ways to create a new application. In this sect
 
   - The application running with a load test with locust
 
-  ![Screenshot of Locust Test Result](images/locust2.png)
+  ![Screenshot of Locust Test Result](images/locust21.png)
 
 **Logs of Azure Webapp:**
 
